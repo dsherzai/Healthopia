@@ -4,6 +4,7 @@ import Home from "./pages/Home.jsx";
 import Practice from "./pages/Practice.jsx";
 import Library from "./pages/Library.jsx";
 import Progress from "./pages/Progress.jsx";
+import Landing from "./pages/Landing.jsx";
 
 const STORAGE_KEY = "healthopia.sessions.v1";
 
@@ -82,12 +83,12 @@ export default function App() {
       </header>
 
       <main className="max-w-3xl mx-auto px-6 py-8">
-        {tab === "home" && (
+        {tab === "<Landing" && (
           <Home
             onPillarStart={startFromPillar}
             goPractice={() => setTab("practice")}
             goLibrary={() => setTab("library")}
-            sessionCount={sessions.length}
+            goProgress={sessions.length}
           />
         )}
         {tab === "practice" && (
