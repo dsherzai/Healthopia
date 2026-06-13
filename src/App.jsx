@@ -83,12 +83,12 @@ export default function App() {
       </header>
 
       <main className="max-w-3xl mx-auto px-6 py-8">
-        {tab === "<Landing" && (
-          <Home
+        {tab === "home" && (
+          <Landing
             onPillarStart={startFromPillar}
             goPractice={() => setTab("practice")}
             goLibrary={() => setTab("library")}
-            goProgress={sessions.length}
+            goProgress={() => setTab("progress")}
           />
         )}
         {tab === "practice" && (
