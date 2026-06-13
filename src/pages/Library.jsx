@@ -59,6 +59,26 @@ Respond ONLY with JSON, no markdown fences:
     setGenBusy(false);
   };
 
+  const all = [...custom, ...RESOURCES];
+
+  // Build filter option lists from the data (so they stay in sync automatically).
+  // These hooks must run on every render, so they live ABOVE the detail-view return.
+  const pillars = useMemo(() => {
+    const set = [];
+    all.forEach((r) => {
+      if (r.pillar && !set.includes(r.pillar)) set.push(r.pillar);
+    });
+    return ["All", ...set];
+  }, [all]);
+
+  const types = useMemo(() => {
+    const set = [];
+    all.forEach((r) => {
+      if (r.type && !set.includes(r.type)) set.push(r.type);
+    });
+    return ["All", ...set];
+  }, [all]);
+
   if (open) {
     return (
       <div>
@@ -96,25 +116,6 @@ Respond ONLY with JSON, no markdown fences:
       </div>
     );
   }
-
-  const all = [...custom, ...RESOURCES];
-
-  // Build filter option lists from the data (so they stay in sync automatically)
-  const pillars = useMemo(() => {
-    const set = [];
-    all.forEach((r) => {
-      if (r.pillar && !set.includes(r.pillar)) set.push(r.pillar);
-    });
-    return ["All", ...set];
-  }, [all]);
-
-  const types = useMemo(() => {
-    const set = [];
-    all.forEach((r) => {
-      if (r.type && !set.includes(r.type)) set.push(r.type);
-    });
-    return ["All", ...set];
-  }, [all]);
 
   // Apply search + filters
   const q = query.trim().toLowerCase();
